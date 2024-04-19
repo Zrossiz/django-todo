@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import ColumnSerializer
 
+
 class ColumnCreateAPIView(APIView):
     def post(self, request, *args, **kwargs):
         serializer = ColumnSerializer(data=request.data)
