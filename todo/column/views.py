@@ -6,6 +6,12 @@ from .models import Column
 
 
 class ColumnCreateAPIView(APIView):
+
+    def get(self, request):
+        columns = Column.objects.all()
+
+        return Response({'data': ColumnSerializer(columns, many=True).data})
+
     def post(self, request):
         serializer = ColumnSerializer(data=request.data)
         if serializer.is_valid():
