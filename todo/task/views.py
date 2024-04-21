@@ -28,3 +28,18 @@ class TaskCreateAPIView(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response({'data': serializer.data})
+
+
+    def delete(self, request, *args, **kwargs):
+        pk = kwargs.get('pk', None)
+
+        if not pk:
+            return Response({'error': 'Method put nor allowed'})
+
+        try:
+            instance = Task.objects.get(pk=pk)
+            instance.delete()
+        except:
+            return Response({'error': 'Objects not found'})
+
+        return Response({f"Item {pk}": "deleted"})
