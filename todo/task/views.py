@@ -6,6 +6,12 @@ from .models import Task
 
 
 class TaskCreateAPIView(APIView):
+
+    def get(self, request):
+        columns = Task.objects.all()
+
+        return Response({'data': TaskSerializer(columns, many=True).data})
+
     def post(self, request):
         serializer = TaskSerializer(data=request.data)
         if serializer.is_valid():
