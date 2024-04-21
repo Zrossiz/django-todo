@@ -5,7 +5,7 @@ from .serializers import ColumnSerializer
 
 
 class ColumnCreateAPIView(APIView):
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
         serializer = ColumnSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
